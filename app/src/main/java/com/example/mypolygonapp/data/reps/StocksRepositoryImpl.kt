@@ -67,7 +67,7 @@ class StocksRepositoryImpl(
 
     companion object {
         private const val URL = "wss://socket.polygon.io/stocks"
-        private const val API_KEY = "fvleS92Sfkh3ORzpIHOT0AgXusFpxY2H"
+        private const val API_KEY = "quack-quack" //todo - use real api-key when it needs
 
         private const val DEBUG_TAG = "StockSocketApi"
     }
