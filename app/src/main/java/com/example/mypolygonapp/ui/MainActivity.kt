@@ -1,28 +1,20 @@
-package com.example.mypolygonapp
+package com.example.mypolygonapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import androidx.activity.viewModels
-import androidx.core.widget.doOnTextChanged
 import com.example.mypolygonapp.databinding.ActivityMainBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel by viewModel<MainViewModel>()
     private lateinit var binding: ActivityMainBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
 
-        binding.send.setOnClickListener {
-            viewModel.sendMessage(binding.message.text.toString())
-        }
-        binding.message.doOnTextChanged { text, _, _, _ ->
-            binding.send.isEnabled = !text.isNullOrBlank()
-        }
+        setContentView(binding.root)
 
         viewModel.receivedMessage.observe(this) { result ->
             val newText = binding.receivedInformation.text.toString() + "$result\n"
